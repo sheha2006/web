@@ -18,6 +18,31 @@
             position: relative;
         }
 
+        .bg-large-img {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 30px;
+            border: 4px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            opacity: 0.25;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        #bgImg1 {
+            top: 10%;
+            left: 5%;
+            transform: rotate(-10deg);
+        }
+
+        #bgImg2 {
+            bottom: 10%;
+            right: 5%;
+            transform: rotate(10deg);
+        }
+
         .bubble-img {
             position: absolute;
             width: 110px;
@@ -26,17 +51,14 @@
             border-radius: 50%;
             border: 3px solid rgba(255, 255, 255, 0.9);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            filter: blur(2px);
             animation: floatBubble 8s linear infinite;
-            z-index: 1;
-            opacity: 0.85;
-            transition: filter 0.3s ease, transform 0.3s ease;
+            z-index: 2;
+            opacity: 0.95;
+            transition: transform 0.3s ease;
         }
 
         .bubble-img:hover {
-            filter: blur(0px);
-            opacity: 1;
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
 
         @keyframes floatBubble {
@@ -45,10 +67,10 @@
                 opacity: 0;
             }
             20% {
-                opacity: 0.85;
+                opacity: 0.95;
             }
             80% {
-                opacity: 0.85;
+                opacity: 0.95;
             }
             100% {
                 transform: translateY(-20vh) scale(1.2) rotate(360deg);
@@ -124,6 +146,9 @@
     </style>
 </head>
 <body>
+
+    <img id="bgImg1" class="bg-large-img" src="https://i.pinimg.com/736x/7c/5b/bf/7c5bbfbcc764d28c5ed15fd585008354.jpg" alt="Background Photo 1">
+    <img id="bgImg2" class="bg-large-img" src="https://i.pinimg.com/736x/2f/b8/70/2fb870cf0cdbdd1899405a5d7048f135.jpg" alt="Background Photo 2">
 
     <div class="glass-card">
         <h1>When should we get married? 🥰</h1>
