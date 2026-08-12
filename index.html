@@ -18,7 +18,6 @@
             position: relative;
         }
 
-        /* පසුබිම් ලොකු පින්තූර දෙක */
         .bg-large-img {
             position: absolute;
             width: 280px;
@@ -44,7 +43,6 @@
             transform: rotate(10deg);
         }
 
-        /* ඉහළ දකුණු කෙළවරේ Animation වන "Chuti" ටෙක්ස්ට් එක */
         .chuti-bubble {
             position: absolute;
             top: 40px;
@@ -83,7 +81,6 @@
             }
         }
 
-        /* පැහැදිලිව පාවෙන බෝල පින්තූර */
         .bubble-img {
             position: absolute;
             width: 110px;
@@ -119,7 +116,6 @@
             }
         }
 
-        /* iOS Glass Card */
         .glass-card {
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(25px);
@@ -164,7 +160,6 @@
             align-items: center;
         }
 
-        /* iOS Liquid Glass Buttons */
         button {
             padding: 14px 35px;
             font-size: 18px;
@@ -202,11 +197,9 @@
             color: white;
             position: absolute;
             left: 170px;
-            /* සිනිඳු ලෙස ළඟින් ලිස්සා යන ස්වභාවය */
-            transition: left 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
-                        top 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
-                        transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
-                        background 0.3s ease;
+            /* අමතර පාලනයක් සඳහා position එක absolute කර ඇත */
+            /* Transition කාලය ඉතා අඩු කර ක්ෂණිකව පැන යාමට සලස්වා ඇත */
+            transition: left 0.15s ease-out, top 0.15s ease-out;
         }
 
         #noBtn:hover {
@@ -226,7 +219,7 @@
         <h1>Will you marry me? ❤️</h1>
         <div class="button-container">
             <button id="yesBtn" onclick="sayYes()">Yes</button>
-            <button id="noBtn" onmousemove="moveAway(event)">No</button>
+            <button id="noBtn" onmouseover="teleportButton()" onmouseenter="teleportButton()" onclick="preventClick(event)">No</button>
         </div>
     </div>
 
@@ -235,42 +228,25 @@
             window.location.href = "date.html";
         }
 
-        function moveAway(e) {
+        function preventClick(e) {
+            e.preventDefault();
+            teleportButton();
+        }
+
+        function teleportButton() {
             const noBtn = document.getElementById("noBtn");
-            const rect = noBtn.getBoundingClientRect();
             
-            const btnX = rect.left + rect.width / 2;
-            const btnY = rect.top + rect.height / 2;
+            // screen එක ඇතුළේ Random අගයන් ලබා ගැනීම (බටන් එක සම්පූර්ණයෙන්ම පෙනෙන පරිදි සීමා කර ඇත)
+            const maxX = window.innerWidth - noBtn.offsetWidth - 50;
+            const maxY = window.innerHeight - noBtn.offsetHeight - 50;
 
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
+            const randomX = Math.floor(Math.random() * (maxX - 50)) + 50;
+            const randomY = Math.floor(Math.random() * (maxY - 50)) + 50;
 
-            let deltaX = btnX - mouseX;
-            let deltaY = btnY - mouseY;
-
-            // ⚠️ විසි වන දුර ප්‍රමාණය ඉතා කුඩා කර ඇත (ළඟින්ම මාරු වේ)
-            const moveDistance = 75;
-
-            let newX = noBtn.offsetLeft + (deltaX > 0 ? moveDistance : -moveDistance);
-            let newY = noBtn.offsetTop + (deltaY > 0 ? moveDistance : -moveDistance);
-
-            const maxX = window.innerWidth - noBtn.offsetWidth - 40;
-            const maxY = window.innerHeight - noBtn.offsetHeight - 40;
-
-            if (newX < 30) newX = 50;
-            if (newX > maxX) newX = maxX - 50;
-            if (newY < 30) newY = 50;
-            if (newY > maxY) newY = maxY - 50;
-
-            // ඉතා මෘදු ලෙස මඳක් ඇදී (Stretch වී) ළඟින්ම මාරු වීම
-            noBtn.style.transform = "scale(0.9, 1.1)";
-            noBtn.style.left = newX + "px";
-            noBtn.style.top = newY + "px";
-
-            // නැවත සාමාන්‍ය හැඩයට පත්වීම
-            setTimeout(() => {
-                noBtn.style.transform = "scale(1, 1)";
-            }, 300);
+            // බටන් එක page එකේ absolute position එකට මාරු කිරීම
+            noBtn.style.position = "fixed";
+            noBtn.style.left = randomX + "px";
+            noBtn.style.top = randomY + "px";
         }
 
         const bubbleImages = [
