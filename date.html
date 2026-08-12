@@ -43,6 +43,44 @@
             transform: rotate(10deg);
         }
 
+        .chuti-bubble {
+            position: absolute;
+            top: 40px;
+            right: 60px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            padding: 12px 28px;
+            border-radius: 50px;
+            color: #d81b60;
+            font-size: 24px;
+            font-weight: 800;
+            box-shadow: 0 10px 25px rgba(216, 27, 96, 0.25);
+            z-index: 20;
+            animation: pulseChuti 2.5s ease-in-out infinite, floatChuti 4s ease-in-out infinite;
+        }
+
+        @keyframes pulseChuti {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 10px 25px rgba(216, 27, 96, 0.25);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 15px 35px rgba(216, 27, 96, 0.45);
+            }
+        }
+
+        @keyframes floatChuti {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-8px) rotate(3deg);
+            }
+        }
+
         .bubble-img {
             position: absolute;
             width: 110px;
@@ -146,6 +184,8 @@
     </style>
 </head>
 <body>
+
+    <div class="chuti-bubble">Chuti ❤️</div>
 
     <img id="bgImg1" class="bg-large-img" src="https://i.pinimg.com/736x/7c/5b/bf/7c5bbfbcc764d28c5ed15fd585008354.jpg" alt="Background Photo 1">
     <img id="bgImg2" class="bg-large-img" src="https://i.pinimg.com/736x/2f/b8/70/2fb870cf0cdbdd1899405a5d7048f135.jpg" alt="Background Photo 2">
