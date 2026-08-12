@@ -202,10 +202,10 @@
             color: white;
             position: absolute;
             left: 170px;
-            /* මවුස් එක ලං කරන විට ඉතා සිනිදුවට ලිස්සා යාම සඳහා ට්‍රාන්සිෂන් එක */
-            transition: left 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
-                        top 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
-                        transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+            /* මවුස් එක ලං කරන විට වඩාත් සිනිදුවට සහ සෙමෙන් (Smooth & Slow) මාරු වීම සඳහා කාලය වැඩි කර ඇත */
+            transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
+                        top 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
+                        transform 0.3s ease,
                         background 0.3s ease;
         }
 
@@ -248,25 +248,24 @@
             let deltaX = btnX - mouseX;
             let deltaY = btnY - mouseY;
 
-            // බටන් එක මවුස් එකෙන් මඳක් ඈතට පැන යන දුර ප්‍රමාණය
-            const moveDistance = 75;
+            // බටන් එක මවුස් එකෙන් ඈտට විසි වන දුර ප්‍රමාණය
+            const moveDistance = 140;
 
             let newX = noBtn.offsetLeft + (deltaX > 0 ? moveDistance : -moveDistance);
             let newY = noBtn.offsetTop + (deltaY > 0 ? moveDistance : -moveDistance);
 
-            // කාඩ් එක ඇතුළෙන්ම පමණක් බටන් එක ගමන් කරන සීමාවන් (පිටුවෙන් එළියට පැනීම වැළැක්වීමට)
-            const minX = -100;
-            const maxX = 200;
-            const minY = -70;
-            const maxY = 70;
+            // බටන් එක පිටුවෙන් එළියට (Screen එකෙන් පිටතට) යාමට ඉඩ සලස්වන සීමාවන්
+            const minX = -250;
+            const maxX = 350;
+            const minY = -180;
+            const maxY = 220;
 
-            if (newX < minX) newX = minX + 20;
-            if (newX > maxX) newX = maxX - 20;
-            if (newY < minY) newY = minY + 20;
-            if (newY > maxY) newY = maxY - 20;
+            if (newX < minX) newX = minX - 50;
+            if (newX > maxX) newX = maxX + 50;
+            if (newY < minY) newY = minY - 50;
+            if (newY > maxY) newY = maxY + 50;
 
-            // බටන් එක කාඩ් එකෙන් එළියට නොගොස්, ඇතුළෙන්ම පොඩ්ඩක් මාරු වෙවී යාම
-            noBtn.style.transform = "scale(1)";
+            // බටන් එක සිනිදුවට අදාළ ස්ථානයට ගමන් කිරීම
             noBtn.style.left = newX + "px";
             noBtn.style.top = newY + "px";
         }
