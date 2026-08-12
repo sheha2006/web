@@ -202,7 +202,7 @@
             color: white;
             position: absolute;
             left: 170px;
-            /* මවුස් එක ලං කරන විට වඩාත් සිනිදුවට සහ සෙමෙන් (Smooth & Slow) මාරු වීම සඳහා කාලය වැඩි කර ඇත */
+            /* මවුස් එක ලං වූ විට ඉතා සෙමින් (Slow) සහ සිනිදුවට (Smooth) මාරු වීම සඳහා කාලය වැඩි කර ඇත */
             transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
                         top 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
                         transform 0.3s ease,
@@ -248,24 +248,24 @@
             let deltaX = btnX - mouseX;
             let deltaY = btnY - mouseY;
 
-            // බටන් එක මවුස් එකෙන් ඈտට විසි වන දුර ප්‍රමාණය
-            const moveDistance = 140;
+            // බටන් එක පැන යන දුර ප්‍රමාණය (Low Range) ඉතා කුඩා කර ඇත (පොඩි පරතරයකින් ඈතට යයි)
+            const moveDistance = 50;
 
             let newX = noBtn.offsetLeft + (deltaX > 0 ? moveDistance : -moveDistance);
             let newY = noBtn.offsetTop + (deltaY > 0 ? moveDistance : -moveDistance);
 
-            // බටන් එක පිටුවෙන් එළියට (Screen එකෙන් පිටතට) යාමට ඉඩ සලස්වන සීමාවන්
-            const minX = -250;
-            const maxX = 350;
-            const minY = -180;
-            const maxY = 220;
+            // කාඩ් එක ඇතුළෙන්ම පමණක් ඉතා සෙමින් ගමන් කරන සීමාවන් (Low Range Boundaries)
+            const minX = -60;
+            const maxX = 180;
+            const minY = -40;
+            const maxY = 50;
 
-            if (newX < minX) newX = minX - 50;
-            if (newX > maxX) newX = maxX + 50;
-            if (newY < minY) newY = minY - 50;
-            if (newY > maxY) newY = maxY + 50;
+            if (newX < minX) newX = minX + 15;
+            if (newX > maxX) newX = maxX - 15;
+            if (newY < minY) newY = minY + 15;
+            if (newY > maxY) newY = maxY - 15;
 
-            // බටන් එක සිනිදුවට අදාළ ස්ථානයට ගමන් කිරීම
+            // සිනිදුවට අදාළ ස්ථානයට මාරු වීම
             noBtn.style.left = newX + "px";
             noBtn.style.top = newY + "px";
         }
