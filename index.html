@@ -18,6 +18,45 @@
             position: relative;
         }
 
+        /* පසුබිමේ වටකුරු බෝල මෙන් පාවෙන පින්තූර */
+        .bubble-img {
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 50%; /* සම්පූර්ණ වටකුරු බෝල ස්වභාවය */
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            filter: blur(2px); /* මඳක් බ්ලර් වී පෙනීමට */
+            animation: floatBubble 8s linear infinite;
+            z-index: 1;
+            opacity: 0.85;
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .bubble-img:hover {
+            filter: blur(0px);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        @keyframes floatBubble {
+            0% {
+                transform: translateY(110vh) scale(0.6) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.85;
+            }
+            80% {
+                opacity: 0.85;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
         /* iOS Liquid Glass Card */
         .glass-card {
             background: rgba(255, 255, 255, 0.4);
@@ -98,32 +137,6 @@
             transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
                         top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
-        /* පසුබිමේ පාවෙන ආදරණීය Emojis (হදවත්, වලස්කුරු ආදී සංකේත) */
-        .floating-emoji {
-            position: absolute;
-            font-size: 30px;
-            animation: floatUp 6s linear infinite;
-            z-index: 1;
-            user-select: none;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(110vh) scale(0.5) rotate(0deg);
-                opacity: 0;
-            }
-            20% {
-                opacity: 0.9;
-            }
-            80% {
-                opacity: 0.9;
-            }
-            100% {
-                transform: translateY(-20vh) scale(1.4) rotate(360deg);
-                opacity: 0;
-            }
-        }
     </style>
 </head>
 <body>
@@ -171,24 +184,31 @@
             noBtn.style.top = newY + "px";
         }
 
-        const emojis = ["💖", "🧸", "🐼", "💍", "✨", "❤️", "🥰", "💌"];
+        /* ඔබ ලබා දුන් පින්තූර සියල්ල ඇතුළත් ලැයිස්තුව */
+        const bubbleImages = [
+            "https://i.pinimg.com/736x/df/d3/db/dfd3db6eef6c29bf07a9eeee75b34249.jpg",
+            "https://i.pinimg.com/736x/dd/f6/53/ddf6538eb24e8b8c4a65efb1904757b3.jpg",
+            "https://i.pinimg.com/736x/fc/e9/5b/fce95b8064545265e918525f19ecc672.jpg",
+            "https://i.pinimg.com/736x/2d/aa/aa/2daaaa716c1b43051e324a7cb80ab1b2.jpg",
+            "https://i.pinimg.com/736x/7c/5b/bf/7c5bbfbcc764d28c5ed15fd585008354.jpg",
+            "https://i.pinimg.com/736x/2f/b8/70/2fb870cf0cdbdd1899405a5d7048f135.jpg"
+        ];
 
-        function createEmoji() {
-            const el = document.createElement("div");
-            el.classList.add("floating-emoji");
-            el.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-            el.style.left = Math.random() * (window.innerWidth - 50) + "px";
-            el.style.fontSize = (Math.random() * 20 + 24) + "px";
-            el.style.animationDuration = (Math.random() * 4 + 4) + "s";
+        function createBubble() {
+            const img = document.createElement("img");
+            img.classList.add("bubble-img");
+            img.src = bubbleImages[Math.floor(Math.random() * bubbleImages.length)];
+            img.style.left = Math.random() * (window.innerWidth - 120) + "px";
+            img.style.animationDuration = (Math.random() * 4 + 6) + "s";
             
-            document.body.appendChild(el);
+            document.body.appendChild(img);
 
             setTimeout(() => {
-                el.remove();
-            }, 7000);
+                img.remove();
+            }, 9000);
         }
 
-        setInterval(createEmoji, 300);
+        setInterval(createBubble, 2500);
     </script>
 
 </body>
