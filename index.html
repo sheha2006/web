@@ -18,7 +18,7 @@
             position: relative;
         }
 
-        /* පසුබිමට එකතු කළ ලොකු ස්ථාවර පින්තූර දෙක */
+        /* පසුබිම් ලොකු පින්තූර දෙක */
         .bg-large-img {
             position: absolute;
             width: 280px;
@@ -119,7 +119,7 @@
             }
         }
 
-        /* iOS Liquid Glass Card */
+        /* Glass Card */
         .glass-card {
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(25px);
@@ -164,51 +164,53 @@
             align-items: center;
         }
 
-        /* Liquid Style Buttons */
+        /* වතුර බිංදුවක් මෙන් හැඩැති Liquid Water-Droplet Style Buttons */
         button {
             padding: 14px 35px;
             font-size: 18px;
             font-weight: 700;
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 40px 15px 40px 15px; /* ජල බිංදු හැඩය මතක් කරවන අද්විතීය වක්‍රය */
             cursor: pointer;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), inset 0 2px 4px rgba(255, 255, 255, 0.6);
-            transition: all 0.3s ease;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 
+                        inset 0 3px 6px rgba(255, 255, 255, 0.9), 
+                        inset 0 -3px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         button:active {
-            transform: scale(0.92);
+            transform: scale(0.9);
         }
 
         #yesBtn {
-            background: rgba(40, 167, 69, 0.85);
+            background: linear-gradient(135deg, rgba(40, 167, 69, 0.9), rgba(30, 126, 52, 0.9));
             color: white;
             position: absolute;
             left: 30px;
         }
 
         #yesBtn:hover {
-            background: rgba(33, 136, 56, 0.95);
-            box-shadow: 0 15px 30px rgba(40, 167, 69, 0.4), inset 0 2px 6px rgba(255, 255, 255, 0.8);
-            transform: scale(1.05);
+            background: linear-gradient(135deg, rgba(48, 199, 82, 0.95), rgba(35, 145, 60, 0.95));
+            box-shadow: 0 15px 35px rgba(40, 167, 69, 0.4), inset 0 4px 8px rgba(255, 255, 255, 0.95);
+            transform: scale(1.08);
+            border-radius: 25px 35px 25px 35px;
         }
 
         #noBtn {
-            background: rgba(220, 53, 69, 0.85);
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.9), rgba(180, 40, 54, 0.9));
             color: white;
             position: absolute;
             left: 170px;
-            /* බෝලයක් මෙන් රවුමට කැරකී යාමට සකස් කළ Transition එක */
-            transition: left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                        top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                        transform 0.5s ease;
+            transition: left 0.45s cubic-bezier(0.25, 1, 0.5, 1), 
+                        top 0.45s cubic-bezier(0.25, 1, 0.5, 1), 
+                        transform 0.45s ease;
         }
 
         #noBtn:hover {
-            background: rgba(200, 35, 51, 0.95);
-            box-shadow: 0 15px 30px rgba(220, 53, 69, 0.4), inset 0 2px 6px rgba(255, 255, 255, 0.8);
+            background: linear-gradient(135deg, rgba(240, 65, 82, 0.95), rgba(200, 45, 60, 0.95));
+            box-shadow: 0 15px 35px rgba(220, 53, 69, 0.4), inset 0 4px 8px rgba(255, 255, 255, 0.95);
         }
     </style>
 </head>
@@ -245,7 +247,8 @@
             let deltaX = btnX - mouseX;
             let deltaY = btnY - mouseY;
 
-            const moveDistance = 140;
+            // පායින් ගැහුවාක් මෙන් වේගයෙන් ඈතකට විසි වී යාමට දුර ප්‍රමාණය වැඩි කර ඇත
+            const moveDistance = 220;
 
             let newX = noBtn.offsetLeft + (deltaX > 0 ? moveDistance : -moveDistance);
             let newY = noBtn.offsetTop + (deltaY > 0 ? moveDistance : -moveDistance);
@@ -258,15 +261,15 @@
             if (newY < 30) newY = 50;
             if (newY > maxY) newY = maxY - 50;
 
-            // මවුස් එක ලං වූ විට බෝලයක් මෙන් අංශක 360ක් කැරකී (Spin) වෙනස් වීම
-            noBtn.style.transform = "rotate(360deg) scale(0.9)";
+            // පායින් ගසන විට බෝලයක් වේගයෙන් දමලා ගහනවා මෙන් පෙනෙන Kick/Whip Spin Animation එක
+            noBtn.style.transform = "translate(15px, -15px) rotate(720deg) scale(0.7)";
             noBtn.style.left = newX + "px";
             noBtn.style.top = newY + "px";
 
-            // කැරකී අවසන් වූ පසු සාමාන්‍ය හැඩයට පැමිණීම
+            // විසි වී ගොස් නැවත සාමාන්‍ය ජල බිංදු හැඩයට පත්වීම
             setTimeout(() => {
-                noBtn.style.transform = "rotate(0deg) scale(1)";
-            }, 500);
+                noBtn.style.transform = "translate(0px, 0px) rotate(0deg) scale(1)";
+            }, 450);
         }
 
         const bubbleImages = [
