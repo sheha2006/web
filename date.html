@@ -12,75 +12,98 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             overflow: hidden;
             position: relative;
         }
 
-        .card {
-            background: white;
+        /* iOS Liquid Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 30px;
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             text-align: center;
             z-index: 10;
             max-width: 400px;
-            width: 90%;
+            width: 85%;
+            animation: fadeInCard 1s ease-out;
+        }
+
+        @keyframes fadeInCard {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         h1 {
-            color: #d63384;
-            font-size: 24px;
-            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 26px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
         }
 
         input[type="date"] {
-            padding: 12px;
-            font-size: 18px;
-            border: 2px solid #ffb6c1;
-            border-radius: 10px;
+            padding: 14px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 15px;
             outline: none;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             width: 80%;
             cursor: pointer;
+            color: #333;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
         }
 
         button {
-            padding: 12px 30px;
+            padding: 14px 35px;
             font-size: 18px;
-            font-weight: bold;
-            background-color: #28a745;
+            font-weight: 600;
+            background: rgba(40, 167, 69, 0.85);
+            backdrop-filter: blur(10px);
             color: white;
             border: none;
-            border-radius: 25px;
+            border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             transition: 0.2s;
         }
 
         button:hover {
-            background-color: #218838;
+            background: #28a745;
+            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.4);
         }
 
         .heart {
             position: absolute;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 20px;
-            animation: floatUp 4s linear infinite;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 22px;
+            animation: floatUp 5s linear infinite;
             z-index: 1;
         }
 
         @keyframes floatUp {
             0% {
-                transform: translateY(100vh) scale(0.5);
+                transform: translateY(100vh) scale(0.6) rotate(0deg);
                 opacity: 0;
             }
             50% {
-                opacity: 0.8;
+                opacity: 0.9;
             }
             100% {
-                transform: translateY(-10vh) scale(1.2);
+                transform: translateY(-10vh) scale(1.3) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -88,7 +111,7 @@
 </head>
 <body>
 
-    <div class="card">
+    <div class="glass-card">
         <h1>When should we get married? 🥰</h1>
         <input type="date" id="weddingDate"><br>
         <button onclick="sendToWhatsApp()">Confirm & Send ❤️</button>
@@ -103,10 +126,9 @@
                 return;
             }
 
-            // Enter your WhatsApp number here (e.g., 94712345678)
-            const phoneNumber = "94786693883"; 
+            // ඔබේ WhatsApp අංකය මෙහි යොදන්න (උදා: 94712345678)
+            const phoneNumber = "947XXXXXXXX"; 
 
-            // The automated message that will appear on WhatsApp
             const message = `I said Yes to marrying you! ❤️ I chose our special day to be on ${selectedDate}. 💍✨`;
 
             const encodedMessage = encodeURIComponent(message);
@@ -120,17 +142,17 @@
             heart.classList.add("heart");
             heart.innerHTML = "❤️";
             heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            heart.style.fontSize = (Math.random() * 20 + 12) + "px";
+            heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
             
             document.body.appendChild(heart);
 
             setTimeout(() => {
                 heart.remove();
-            }, 5000);
+            }, 6000);
         }
 
-        setInterval(createHeart, 300);
+        setInterval(createHeart, 250);
     </script>
 
 </body>
