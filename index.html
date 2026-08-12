@@ -44,7 +44,7 @@
             transform: rotate(10deg);
         }
 
-        /* ඉහළ දකුණු කෙළවරේ Animation වන "Chuti" Text Bubble එක */
+        /* ඉහළ දකුණු කෙළවරේ Animation වන "Chuti" ටෙක්ස්ට් එක */
         .chuti-bubble {
             position: absolute;
             top: 40px;
@@ -164,40 +164,51 @@
             align-items: center;
         }
 
+        /* Liquid Style Buttons */
         button {
             padding: 14px 35px;
             font-size: 18px;
             font-weight: 700;
-            border: none;
+            border: 2px solid rgba(255, 255, 255, 0.6);
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
         }
 
         button:active {
-            transform: scale(0.95);
+            transform: scale(0.92);
         }
 
         #yesBtn {
-            background: #28a745;
+            background: rgba(40, 167, 69, 0.85);
             color: white;
             position: absolute;
-            left: 40px;
+            left: 30px;
         }
 
         #yesBtn:hover {
-            background: #218838;
-            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.5);
+            background: rgba(33, 136, 56, 0.95);
+            box-shadow: 0 15px 30px rgba(40, 167, 69, 0.4), inset 0 2px 6px rgba(255, 255, 255, 0.8);
+            transform: scale(1.05);
         }
 
         #noBtn {
-            background: #dc3545;
+            background: rgba(220, 53, 69, 0.85);
             color: white;
             position: absolute;
-            left: 180px;
-            transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                        top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            left: 170px;
+            /* බෝලයක් මෙන් රවුමට කැරකී යාමට සකස් කළ Transition එක */
+            transition: left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        transform 0.5s ease;
+        }
+
+        #noBtn:hover {
+            background: rgba(200, 35, 51, 0.95);
+            box-shadow: 0 15px 30px rgba(220, 53, 69, 0.4), inset 0 2px 6px rgba(255, 255, 255, 0.8);
         }
     </style>
 </head>
@@ -234,7 +245,7 @@
             let deltaX = btnX - mouseX;
             let deltaY = btnY - mouseY;
 
-            const moveDistance = 90;
+            const moveDistance = 140;
 
             let newX = noBtn.offsetLeft + (deltaX > 0 ? moveDistance : -moveDistance);
             let newY = noBtn.offsetTop + (deltaY > 0 ? moveDistance : -moveDistance);
@@ -247,8 +258,15 @@
             if (newY < 30) newY = 50;
             if (newY > maxY) newY = maxY - 50;
 
+            // මවුස් එක ලං වූ විට බෝලයක් මෙන් අංශක 360ක් කැරකී (Spin) වෙනස් වීම
+            noBtn.style.transform = "rotate(360deg) scale(0.9)";
             noBtn.style.left = newX + "px";
             noBtn.style.top = newY + "px";
+
+            // කැරකී අවසන් වූ පසු සාමාන්‍ය හැඩයට පැමිණීම
+            setTimeout(() => {
+                noBtn.style.transform = "rotate(0deg) scale(1)";
+            }, 500);
         }
 
         const bubbleImages = [
