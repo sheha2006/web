@@ -1,303 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Marry Me? ❤️</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #7afcff 100%);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            overflow: hidden;
-            position: relative;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Marry Me? ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #7afcff 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
 
-        /* පසුබිම් ලොකු පින්තූර දෙක */
-        .bg-large-img {
-            position: absolute;
-            width: 280px;
-            height: 280px;
-            object-fit: cover;
-            border-radius: 30px;
-            border: 4px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            opacity: 0.25;
-            z-index: 0;
-            pointer-events: none;
-        }
+        /* පසුබිම් ලොකු පින්තූර දෙක */
+        .bg-large-img {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 30px;
+            border: 4px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            opacity: 0.25;
+            z-index: 0;
+            pointer-events: none;
+        }
 
-        #bgImg1 {
-            top: 10%;
-            left: 5%;
-            transform: rotate(-10deg);
-        }
+        #bgImg1 {
+            top: 10%;
+            left: 5%;
+            transform: rotate(-10deg);
+        }
 
-        #bgImg2 {
-            bottom: 10%;
-            right: 5%;
-            transform: rotate(10deg);
-        }
+        #bgImg2 {
+            bottom: 10%;
+            right: 5%;
+            transform: rotate(10deg);
+        }
 
-        /* ඉහළ දකුණු කෙළවරේ Animation වන "Chuti" ටෙක්ස්ට් එක */
-        .chuti-bubble {
-            position: absolute;
-            top: 40px;
-            right: 60px;
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.9);
-            padding: 12px 28px;
-            border-radius: 50px;
-            color: #d81b60;
-            font-size: 24px;
-            font-weight: 800;
-            box-shadow: 0 10px 25px rgba(216, 27, 96, 0.25);
-            z-index: 20;
-            animation: pulseChuti 2.5s ease-in-out infinite, floatChuti 4s ease-in-out infinite;
-        }
+        /* ඉහළ දකුණු කෙළවරේ Animation වන "Chuti" ටෙක්ස්ට් එක */
+        .chuti-bubble {
+            position: absolute;
+            top: 40px;
+            right: 60px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            padding: 12px 28px;
+            border-radius: 50px;
+            color: #d81b60;
+            font-size: 24px;
+            font-weight: 800;
+            box-shadow: 0 10px 25px rgba(216, 27, 96, 0.25);
+            z-index: 20;
+            animation: pulseChuti 2.5s ease-in-out infinite, floatChuti 4s ease-in-out infinite;
+        }
 
-        @keyframes pulseChuti {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 10px 25px rgba(216, 27, 96, 0.25);
-            }
-            50% {
-                transform: scale(1.1);
-                box-shadow: 0 15px 35px rgba(216, 27, 96, 0.45);
-            }
-        }
+        @keyframes pulseChuti {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 10px 25px rgba(216, 27, 96, 0.25);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 15px 35px rgba(216, 27, 96, 0.45);
+            }
+        }
 
-        @keyframes floatChuti {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-8px) rotate(3deg);
-            }
-        }
+        @keyframes floatChuti {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-8px) rotate(3deg);
+            }
+        }
 
-        /* පැහැදිලිව පාවෙන බෝල පින්තූර */
-        .bubble-img {
-            position: absolute;
-            width: 110px;
-            height: 110px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            animation: floatBubble 8s linear infinite;
-            z-index: 2;
-            opacity: 0.95;
-            transition: transform 0.3s ease;
-        }
+        /* පැහැදිලිව පාවෙන බෝල පින්තූර */
+        .bubble-img {
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: floatBubble 8s linear infinite;
+            z-index: 2;
+            opacity: 0.95;
+            transition: transform 0.3s ease;
+        }
 
-        .bubble-img:hover {
-            transform: scale(1.15);
-        }
+        .bubble-img:hover {
+            transform: scale(1.15);
+        }
 
-        @keyframes floatBubble {
-            0% {
-                transform: translateY(110vh) scale(0.6) rotate(0deg);
-                opacity: 0;
-            }
-            20% {
-                opacity: 0.95;
-            }
-            80% {
-                opacity: 0.95;
-            }
-            100% {
-                transform: translateY(-20vh) scale(1.2) rotate(360deg);
-                opacity: 0;
-            }
-        }
+        @keyframes floatBubble {
+            0% {
+                transform: translateY(110vh) scale(0.6) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.95;
+            }
+            80% {
+                opacity: 0.95;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-        /* iOS Glass Card */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            border-radius: 35px;
-            padding: 50px 40px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-            text-align: center;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: fadeInCard 1s ease-out;
-        }
+        /* iOS Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 35px;
+            padding: 50px 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeInCard 1s ease-out;
+        }
 
-        @keyframes fadeInCard {
-            0% {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
+        @keyframes fadeInCard {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
 
-        h1 {
-            color: #b91c5c;
-            margin-bottom: 40px;
-            font-size: 32px;
-            font-weight: 800;
-            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.9);
-        }
+        h1 {
+            color: #b91c5c;
+            margin-bottom: 40px;
+            font-size: 32px;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.9);
+        }
 
-        .button-container {
-            position: relative;
-            width: 350px;
-            height: 80px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        .button-container {
+            position: relative;
+            width: 350px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-        /* iOS Liquid Glass Buttons */
-        button {
-            padding: 14px 35px;
-            font-size: 18px;
-            font-weight: 700;
-            border: 1.5px solid rgba(255, 255, 255, 0.8);
-            border-radius: 30px;
-            cursor: pointer;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12), 
-                        inset 0 2px 5px rgba(255, 255, 255, 0.85), 
-                        inset 0 -2px 5px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-        }
+        /* iOS Liquid Glass Buttons */
+        button {
+            padding: 14px 35px;
+            font-size: 18px;
+            font-weight: 700;
+            border: 1.5px solid rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            cursor: pointer;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12), 
+                        inset 0 2px 5px rgba(255, 255, 255, 0.85), 
+                        inset 0 -2px 5px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
 
-        button:active {
-            transform: scale(0.94);
-        }
+        button:active {
+            transform: scale(0.94);
+        }
 
-        #yesBtn {
-            background: linear-gradient(135deg, rgba(40, 167, 69, 0.85), rgba(30, 126, 52, 0.85));
-            color: white;
-            position: absolute;
-            left: 30px;
-        }
+        #yesBtn {
+            background: linear-gradient(135deg, rgba(40, 167, 69, 0.85), rgba(30, 126, 52, 0.85));
+            color: white;
+            position: absolute;
+            left: 30px;
+        }
 
-        #yesBtn:hover {
-            background: linear-gradient(135deg, rgba(48, 199, 82, 0.95), rgba(35, 145, 60, 0.95));
-            box-shadow: 0 15px 35px rgba(40, 167, 69, 0.35), inset 0 3px 6px rgba(255, 255, 255, 0.9);
-            transform: scale(1.06);
-        }
+        #yesBtn:hover {
+            background: linear-gradient(135deg, rgba(48, 199, 82, 0.95), rgba(35, 145, 60, 0.95));
+            box-shadow: 0 15px 35px rgba(40, 167, 69, 0.35), inset 0 3px 6px rgba(255, 255, 255, 0.9);
+            transform: scale(1.06);
+        }
 
-        #noBtn {
-            background: linear-gradient(135deg, rgba(220, 53, 69, 0.85), rgba(180, 40, 54, 0.85));
-            color: white;
-            position: absolute;
-            left: 170px;
-            /* සිනිඳු ලෙස ළඟින් ලිස්සා යන ස්වභාවය */
-            transition: left 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
-                        top 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
-                        transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
-                        background 0.3s ease;
-        }
+        #noBtn {
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.85), rgba(180, 40, 54, 0.85));
+            color: white;
+            position: absolute;
+            left: 170px;
+            /* සිනිඳු ලෙස ළඟින් ලිස්සා යන ස්වභාවය */
+            transition: left 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
+                        top 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
+                        transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+                        background 0.3s ease;
+        }
 
-        #noBtn:hover {
-            background: linear-gradient(135deg, rgba(240, 65, 82, 0.95), rgba(200, 45, 60, 0.95));
-            box-shadow: 0 15px 35px rgba(220, 53, 69, 0.35), inset 0 3px 6px rgba(255, 255, 255, 0.9);
-        }
-    </style>
+        #noBtn:hover {
+            background: linear-gradient(135deg, rgba(240, 65, 82, 0.95), rgba(200, 45, 60, 0.95));
+            box-shadow: 0 15px 35px rgba(220, 53, 69, 0.35), inset 0 3px 6px rgba(255, 255, 255, 0.9);
+        }
+    </style>
 </head>
 <body>
 
-    <div class="chuti-bubble">Chuti ❤️</div>
+    <div class="chuti-bubble">Chuti ❤️</div>
 
-    <img id="bgImg1" class="bg-large-img" src="https://i.pinimg.com/736x/7c/5b/bf/7c5bbfbcc764d28c5ed15fd585008354.jpg" alt="Background Photo 1">
-    <img id="bgImg2" class="bg-large-img" src="https://i.pinimg.com/736x/2f/b8/70/2fb870cf0cdbdd1899405a5d7048f135.jpg" alt="Background Photo 2">
+    <img id="bgImg1" class="bg-large-img" src="https://i.pinimg.com/736x/7c/5b/bf/7c5bbfbcc764d28c5ed15fd585008354.jpg" alt="Background Photo 1">
+    <img id="bgImg2" class="bg-large-img" src="https://i.pinimg.com/736x/2f/b8/70/2fb870cf0cdbdd1899405a5d7048f135.jpg" alt="Background Photo 2">
 
-    <div class="glass-card">
-        <h1>Will you marry me? ❤️</h1>
-        <div class="button-container">
-            <button id="yesBtn" onclick="sayYes()">Yes</button>
-            <button id="noBtn" onmousemove="moveAway(event)">No</button>
-        </div>
-    </div>
+    <div class="glass-card">
+        <h1>Will you marry me? ❤️</h1>
+        <div class="button-container">
+            <button id="yesBtn" onclick="sayYes()">Yes</button>
+            <button id="noBtn" onmousemove="moveAway(event)">No</button>
+        </div>
+    </div>
 
-    <script>
-        function sayYes() {
-            window.location.href = "date.html";
-        }
+    <script>
+        function sayYes() {
+            window.location.href = "date.html";
+        }
 
-        function moveAway(e) {
-            const noBtn = document.getElementById("noBtn");
-            const rect = noBtn.getBoundingClientRect();
-            
-            const btnX = rect.left + rect.width / 2;
-            const btnY = rect.top + rect.height / 2;
+        function moveAway(e) {
+            const noBtn = document.getElementById("noBtn");
+            const rect = noBtn.getBoundingClientRect();
+            
+            const btnX = rect.left + rect.width / 2;
+            const btnY = rect.top + rect.height / 2;
 
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
 
-            let deltaX = btnX - mouseX;
-            let deltaY = btnY - mouseY;
+            let deltaX = btnX - mouseX;
+            let deltaY = btnY - mouseY;
 
-            // ⚠️ විසි වන දුර ප්‍රමාණය ඉතා කුඩා කර ඇත (ළඟින්ම මාරු වේ)
-            const moveDistance = 75;
+            // ⚠️ විසි වන දුර ප්‍රමාණය ඉතා කුඩා කර ඇත (ළඟින්ම මාරු වේ)
+            const moveDistance = 75;
 
-            let newX = noBtn.offsetLeft + (deltaX > 0 ? moveDistance : -moveDistance);
-            let newY = noBtn.offsetTop + (deltaY > 0 ? moveDistance : -moveDistance);
+            let newX = noBtn.offsetLeft + (deltaX > 0 ? moveDistance : -moveDistance);
+            let newY = noBtn.offsetTop + (deltaY > 0 ? moveDistance : -moveDistance);
 
-            const maxX = window.innerWidth - noBtn.offsetWidth - 40;
-            const maxY = window.innerHeight - noBtn.offsetHeight - 40;
+            const maxX = window.innerWidth - noBtn.offsetWidth - 40;
+            const maxY = window.innerHeight - noBtn.offsetHeight - 40;
 
-            if (newX < 30) newX = 50;
-            if (newX > maxX) newX = maxX - 50;
-            if (newY < 30) newY = 50;
-            if (newY > maxY) newY = maxY - 50;
+            if (newX < 30) newX = 50;
+            if (newX > maxX) newX = maxX - 50;
+            if (newY < 30) newY = 50;
+            if (newY > maxY) newY = maxY - 50;
 
-            // ඉතා මෘදු ලෙස මඳක් ඇදී (Stretch වී) ළඟින්ම මාරු වීම
-            noBtn.style.transform = "scale(0.9, 1.1)";
-            noBtn.style.left = newX + "px";
-            noBtn.style.top = newY + "px";
+            // ඉතා මෘදු ලෙස මඳක් ඇදී (Stretch වී) ළඟින්ම මාරු වීම
+            noBtn.style.transform = "scale(0.9, 1.1)";
+            noBtn.style.left = newX + "px";
+            noBtn.style.top = newY + "px";
 
-            // නැවත සාමාන්‍ය හැඩයට පත්වීම
-            setTimeout(() => {
-                noBtn.style.transform = "scale(1, 1)";
-            }, 300);
-        }
+            // නැවත සාමාන්‍ය හැඩයට පත්වීම
+            setTimeout(() => {
+                noBtn.style.transform = "scale(1, 1)";
+            }, 300);
+        }
 
-        const bubbleImages = [
-            "https://i.pinimg.com/736x/df/d3/db/dfd3db6eef6c29bf07a9eeee75b34249.jpg",
-            "https://i.pinimg.com/736x/dd/f6/53/ddf6538eb24e8b8c4a65efb1904757b3.jpg",
-            "https://i.pinimg.com/736x/fc/e9/5b/fce95b8064545265e918525f19ecc672.jpg",
-            "https://i.pinimg.com/736x/2d/aa/aa/2daaaa716c1b43051e324a7cb80ab1b2.jpg",
-            "https://i.pinimg.com/736x/7c/5b/bf/7c5bbfbcc764d28c5ed15fd585008354.jpg",
-            "https://i.pinimg.com/736x/2f/b8/70/2fb870cf0cdbdd1899405a5d7048f135.jpg"
-        ];
+        const bubbleImages = [
+            "https://i.pinimg.com/736x/df/d3/db/dfd3db6eef6c29bf07a9eeee75b34249.jpg",
+            "https://i.pinimg.com/736x/dd/f6/53/ddf6538eb24e8b8c4a65efb1904757b3.jpg",
+            "https://i.pinimg.com/736x/fc/e9/5b/fce95b8064545265e918525f19ecc672.jpg",
+            "https://i.pinimg.com/736x/2d/aa/aa/2daaaa716c1b43051e324a7cb80ab1b2.jpg",
+            "https://i.pinimg.com/736x/7c/5b/bf/7c5bbfbcc764d28c5ed15fd585008354.jpg",
+            "https://i.pinimg.com/736x/2f/b8/70/2fb870cf0cdbdd1899405a5d7048f135.jpg"
+        ];
 
-        function createBubble() {
-            const img = document.createElement("img");
-            img.classList.add("bubble-img");
-            img.src = bubbleImages[Math.floor(Math.random() * bubbleImages.length)];
-            img.style.left = Math.random() * (window.innerWidth - 120) + "px";
-            img.style.animationDuration = (Math.random() * 4 + 6) + "s";
-            
-            document.body.appendChild(img);
+        function createBubble() {
+            const img = document.createElement("img");
+            img.classList.add("bubble-img");
+            img.src = bubbleImages[Math.floor(Math.random() * bubbleImages.length)];
+            img.style.left = Math.random() * (window.innerWidth - 120) + "px";
+            img.style.animationDuration = (Math.random() * 4 + 6) + "s";
+            
+            document.body.appendChild(img);
 
-            setTimeout(() => {
-                img.remove();
-            }, 9000);
-        }
+            setTimeout(() => {
+                img.remove();
+            }, 9000);
+        }
 
-        setInterval(createBubble, 2500);
-    </script>
+        setInterval(createBubble, 2500);
+    </script>
 
 </body>
 </html>
