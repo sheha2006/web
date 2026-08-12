@@ -18,7 +18,7 @@
             position: relative;
         }
 
-        /* පසුබිමට එකතු කළ ලොකු ස්ථාවර පින්තූර දෙක (Static Large Background Photos) */
+        /* පසුබිමට එකතු කළ ලොකු ස්ථාවර පින්තූර දෙක */
         .bg-large-img {
             position: absolute;
             width: 280px;
@@ -27,7 +27,7 @@
             border-radius: 30px;
             border: 4px solid rgba(255, 255, 255, 0.6);
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            opacity: 0.25; /* පසුබිමට අනුගත වීමට ලාවට පෙනෙන සේ */
+            opacity: 0.25;
             z-index: 0;
             pointer-events: none;
         }
@@ -44,7 +44,46 @@
             transform: rotate(10deg);
         }
 
-        /* බෝල මෙන් පාවෙන පින්තූර (Blur නැත, සම්පූර්ණයෙන්ම පැහැදිලියි) */
+        /* ඉහළ දකුණු කෙළවරේ Animation වන "Chuti" Text Bubble එක */
+        .chuti-bubble {
+            position: absolute;
+            top: 40px;
+            right: 60px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            padding: 12px 28px;
+            border-radius: 50px;
+            color: #d81b60;
+            font-size: 24px;
+            font-weight: 800;
+            box-shadow: 0 10px 25px rgba(216, 27, 96, 0.25);
+            z-index: 20;
+            animation: pulseChuti 2.5s ease-in-out infinite, floatChuti 4s ease-in-out infinite;
+        }
+
+        @keyframes pulseChuti {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 10px 25px rgba(216, 27, 96, 0.25);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 15px 35px rgba(216, 27, 96, 0.45);
+            }
+        }
+
+        @keyframes floatChuti {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-8px) rotate(3deg);
+            }
+        }
+
+        /* පැහැදිලිව පාවෙන බෝල පින්තූර */
         .bubble-img {
             position: absolute;
             width: 110px;
@@ -53,7 +92,6 @@
             border-radius: 50%;
             border: 3px solid rgba(255, 255, 255, 0.9);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            /* Blur ඉවත් කර ඇත - දැන් සම්පූර්ණයෙන්ම පැහැදිලියි */
             animation: floatBubble 8s linear infinite;
             z-index: 2;
             opacity: 0.95;
@@ -165,6 +203,8 @@
 </head>
 <body>
 
+    <div class="chuti-bubble">Chuti ❤️</div>
+
     <img id="bgImg1" class="bg-large-img" src="https://i.pinimg.com/736x/7c/5b/bf/7c5bbfbcc764d28c5ed15fd585008354.jpg" alt="Background Photo 1">
     <img id="bgImg2" class="bg-large-img" src="https://i.pinimg.com/736x/2f/b8/70/2fb870cf0cdbdd1899405a5d7048f135.jpg" alt="Background Photo 2">
 
@@ -211,7 +251,6 @@
             noBtn.style.top = newY + "px";
         }
 
-        /* පාවෙන බෝල පින්තූර ලැයිස්තුව */
         const bubbleImages = [
             "https://i.pinimg.com/736x/df/d3/db/dfd3db6eef6c29bf07a9eeee75b34249.jpg",
             "https://i.pinimg.com/736x/dd/f6/53/ddf6538eb24e8b8c4a65efb1904757b3.jpg",
