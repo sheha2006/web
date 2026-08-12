@@ -202,9 +202,9 @@
             color: white;
             position: absolute;
             left: 170px;
-            /* ඉතා සිනිඳු ලෙස ලිස්සා යන ස්වභාවය (No rotation) */
-            transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                        top 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+            /* සිනිඳු ලෙස ළඟින් ලිස්සා යන ස්වභාවය */
+            transition: left 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
+                        top 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
                         transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
                         background 0.3s ease;
         }
@@ -248,8 +248,8 @@
             let deltaX = btnX - mouseX;
             let deltaY = btnY - mouseY;
 
-            // පායින් ගැහුවාක් මෙන් වේගයෙන් ඈතකට විසි වී යන දුර ප්‍රමාණය
-            const moveDistance = 210;
+            // ⚠️ විසි වන දුර ප්‍රමාණය ඉතා කුඩා කර ඇත (ළඟින්ම මාරු වේ)
+            const moveDistance = 75;
 
             let newX = noBtn.offsetLeft + (deltaX > 0 ? moveDistance : -moveDistance);
             let newY = noBtn.offsetTop + (deltaY > 0 ? moveDistance : -moveDistance);
@@ -262,15 +262,15 @@
             if (newY < 30) newY = 50;
             if (newY > maxY) newY = maxY - 50;
 
-            // බෝලයකට පායින් ගසන විට මෙන් මඳක් ඇදී (Stretch වී) දිව යන ස්වභාවය (කැරකීමක් නැත)
-            noBtn.style.transform = "scale(0.85, 1.15)";
+            // ඉතා මෘදු ලෙස මඳක් ඇදී (Stretch වී) ළඟින්ම මාරු වීම
+            noBtn.style.transform = "scale(0.9, 1.1)";
             noBtn.style.left = newX + "px";
             noBtn.style.top = newY + "px";
 
-            // විසි වී ගොස් නැවත සාමාන්‍ය හැඩයට පත්වීම
+            // නැවත සාමාන්‍ය හැඩයට පත්වීම
             setTimeout(() => {
                 noBtn.style.transform = "scale(1, 1)";
-            }, 350);
+            }, 300);
         }
 
         const bubbleImages = [
