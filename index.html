@@ -18,7 +18,6 @@
             position: relative;
         }
 
-        /* පසුබිම් ලොකු පින්තූර දෙක */
         .bg-large-img {
             position: absolute;
             width: 280px;
@@ -44,7 +43,6 @@
             transform: rotate(10deg);
         }
 
-        /* ඉහළ දකුණු කෙළවරේ Animation වන "Chuti" ටෙක්ස්ට් එක */
         .chuti-bubble {
             position: absolute;
             top: 40px;
@@ -60,16 +58,20 @@
             font-weight: 800;
             box-shadow: 0 10px 25px rgba(216, 27, 96, 0.25);
             z-index: 20;
+            cursor: pointer;
             animation: pulseChuti 2.5s ease-in-out infinite, floatChuti 4s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+
+        .chuti-bubble:hover {
+            transform: scale(1.1);
         }
 
         @keyframes pulseChuti {
             0%, 100% {
-                transform: scale(1);
                 box-shadow: 0 10px 25px rgba(216, 27, 96, 0.25);
             }
             50% {
-                transform: scale(1.1);
                 box-shadow: 0 15px 35px rgba(216, 27, 96, 0.45);
             }
         }
@@ -83,7 +85,6 @@
             }
         }
 
-        /* පැහැදිලිව පාවෙන බෝල පින්තූර */
         .bubble-img {
             position: absolute;
             width: 110px;
@@ -119,7 +120,6 @@
             }
         }
 
-        /* iOS Glass Card */
         .glass-card {
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(25px);
@@ -164,7 +164,6 @@
             align-items: center;
         }
 
-        /* iOS Liquid Glass Buttons */
         button {
             padding: 14px 35px;
             font-size: 18px;
@@ -202,7 +201,6 @@
             color: white;
             position: absolute;
             left: 170px;
-            /* සිනිඳු ලෙස ළඟින් ලිස්සා යන ස්වභාවය */
             transition: left 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
                         top 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
                         transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
@@ -217,7 +215,7 @@
 </head>
 <body>
 
-    <div class="chuti-bubble">Chuti ❤️</div>
+    <div class="chuti-bubble" onclick="goToChutiPage()">Chuti ❤️</div>
 
     <img id="bgImg1" class="bg-large-img" src="https://i.pinimg.com/736x/7c/5b/bf/7c5bbfbcc764d28c5ed15fd585008354.jpg" alt="Background Photo 1">
     <img id="bgImg2" class="bg-large-img" src="https://i.pinimg.com/736x/2f/b8/70/2fb870cf0cdbdd1899405a5d7048f135.jpg" alt="Background Photo 2">
@@ -235,6 +233,10 @@
             window.location.href = "date.html";
         }
 
+        function goToChutiPage() {
+            window.location.href = "profile.html"; // මෙතනට ඔයාට යන්න ඕන page එකේ නම දාන්න
+        }
+
         function moveAway(e) {
             const noBtn = document.getElementById("noBtn");
             const rect = noBtn.getBoundingClientRect();
@@ -248,7 +250,6 @@
             let deltaX = btnX - mouseX;
             let deltaY = btnY - mouseY;
 
-            // ⚠️ විසි වන දුර ප්‍රමාණය ඉතා කුඩා කර ඇත (ළඟින්ම මාරු වේ)
             const moveDistance = 75;
 
             let newX = noBtn.offsetLeft + (deltaX > 0 ? moveDistance : -moveDistance);
@@ -262,12 +263,10 @@
             if (newY < 30) newY = 50;
             if (newY > maxY) newY = maxY - 50;
 
-            // ඉතා මෘදු ලෙස මඳක් ඇදී (Stretch වී) ළඟින්ම මාරු වීම
             noBtn.style.transform = "scale(0.9, 1.1)";
             noBtn.style.left = newX + "px";
             noBtn.style.top = newY + "px";
 
-            // නැවත සාමාන්‍ය හැඩයට පත්වීම
             setTimeout(() => {
                 noBtn.style.transform = "scale(1, 1)";
             }, 300);
