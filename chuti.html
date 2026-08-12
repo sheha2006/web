@@ -115,11 +115,26 @@
         function submitAnswer() {
             const selected = document.querySelector('input[name="answer"]:checked');
             if (!selected) {
-                alert("කරුණාකර පිළිතුරක් තෝරන්න! ❤️");
+                alert("කරුණාකර පිළිතුරක් තෝරන්න!");
                 return;
             }
-            alert("ස්තුතියි! ඔබේ පිළිතුර සාර්ථකව යොමු විය. ❤️");
-            window.location.href = "index.html";
+
+            const answerValue = selected.value;
+            let message = "";
+
+            if (answerValue === "sudui") {
+                message = "සුදුයි අනේ...ඇයි ආසද...?";
+            } else if (answerValue === "kalui") {
+                message = "කලුයි ඉතින්... හැබැයි කලු දොදොලුත් ශෝයි...🙈";
+            } else if (answerValue === "thalelui") {
+                message = "ම්ම්ම්..🤤තලෙලුයි පැටියෝ😋(cinnamon)";
+            }
+
+            const phoneNumber = "94786693883"; // ඔබේ WhatsApp අංකය මෙහි යොදන්න
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+            window.open(whatsappUrl, '_blank');
         }
     </script>
 
