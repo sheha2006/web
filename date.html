@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Wedding Date ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-align: center;
+            z-index: 10;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        input[type="date"] {
+            padding: 12px;
+            font-size: 18px;
+            border: 2px solid #ffb6c1;
+            border-radius: 10px;
+            outline: none;
+            margin-bottom: 20px;
+            width: 80%;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 20px;
+            animation: floatUp 4s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>When should we get married? 🥰</h1>
+        <input type="date" id="weddingDate"><br>
+        <button onclick="sendToWhatsApp()">Confirm & Send ❤️</button>
+    </div>
+
+    <script>
+        function sendToWhatsApp() {
+            const selectedDate = document.getElementById("weddingDate").value;
+            
+            if(selectedDate === "") {
+                alert("Please select a date! 😊");
+                return;
+            }
+
+            // Enter your WhatsApp number here (e.g., 94712345678)
+            const phoneNumber = "94786693883"; 
+
+            // The automated message that will appear on WhatsApp
+            const message = `I said Yes to marrying you! ❤️ I chose our special day to be on ${selectedDate}. 💍✨`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+
+</body>
+</html>
