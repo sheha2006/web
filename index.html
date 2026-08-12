@@ -202,16 +202,9 @@
             color: white;
             position: absolute;
             left: 170px;
-            /* ඉතා සෙමින් සහ සිනිදුවට (Slow & Smooth) මාරු වීම සඳහා කාලය වැඩි කර ඇත */
-            transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
-                        top 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
-                        transform 0.3s ease,
-                        background 0.3s ease;
-        }
-
-        #noBtn:hover {
-            background: linear-gradient(135deg, rgba(240, 65, 82, 0.95), rgba(200, 45, 60, 0.95));
-            box-shadow: 0 15px 35px rgba(220, 53, 69, 0.35), inset 0 3px 6px rgba(255, 255, 255, 0.9);
+            /* ක්ලික් කිරීමට හෝ ස්පර්ශ කිරීමට නොහැකි වන පරිදි සකසා ඇත */
+            pointer-events: none;
+            transition: left 0.4s ease-out, top 0.4s ease-out;
         }
     </style>
 </head>
@@ -226,7 +219,7 @@
         <h1>Will you marry me? ❤️</h1>
         <div class="button-container" id="btnContainer">
             <button id="yesBtn" onclick="sayYes()">Yes</button>
-            <button id="noBtn" onmousemove="moveAway(event)">No</button>
+            <button id="noBtn">No</button>
         </div>
     </div>
 
@@ -235,39 +228,37 @@
             window.location.href = "date.html";
         }
 
-        function moveAway(e) {
-            const noBtn = document.getElementById("noBtn");
+        const noBtn = document.getElementById("noBtn");
+
+        // මවුස් එක ළඟට ගෙන යන විට හෝ ස්පර්ශ වන විට ක්‍රියාත්මක වේ
+        document.addEventListener("mousemove", (e) => {
             const rect = noBtn.getBoundingClientRect();
-            
             const btnX = rect.left + rect.width / 2;
             const btnY = rect.top + rect.height / 2;
 
             const mouseX = e.clientX;
             const mouseY = e.clientY;
 
-            let deltaX = btnX - mouseX;
-            let deltaY = btnY - mouseY;
+            // මවුස් එක සහ බටන් එක අතර දුර ප්‍රමාණය සෙවීම
+            const distance = Math.hypot(mouseX - btnX, mouseY - btnY);
 
-            // මවුස් එක ලං වන විට මඳක් ඈතට (Low Range) සෙමින් ගමන් කිරීම
-            const moveDistance = 70;
+            // මවුස් එක බටන් එකට පික්සෙල් 90ක් ළඟට ආවොත් බටන් එක වෙනත් තැනකට පැන යයි
+            if (distance < 90) {
+                moveButtonRandomly();
+            }
+        });
 
-            let newX = noBtn.offsetLeft + (deltaX > 0 ? moveDistance : -moveDistance);
-            let newY = noBtn.offsetTop + (deltaY > 0 ? moveDistance : -moveDistance);
+        function moveButtonRandomly() {
+            // Screen එක ඇතුළේ අහඹු නව ස්ථාන (Random X and Y) ලබා දීම
+            const maxX = window.innerWidth - 120;
+            const maxY = window.innerHeight - 60;
+            
+            const randomX = Math.random() * (maxX - 100) + 50;
+            const randomY = Math.random() * (maxY - 100) + 50;
 
-            // කාඩ් එකෙන් එළියට පැනීමට සහ Screen එකෙන් පිටතට යෑමට ඉඩ සලස්වන සීමාවන් (Low Range Boundaries)
-            const minX = -150;
-            const maxX = 250;
-            const minY = -100;
-            const maxY = 120;
-
-            if (newX < minX) newX = minX - 30;
-            if (newX > maxX) newX = maxX + 30;
-            if (newY < minY) newY = minY - 30;
-            if (newY > maxY) newY = maxY + 30;
-
-            // ඉතා සිනිදුවට අදාළ ස්ථානයට මාරු වීම
-            noBtn.style.left = newX + "px";
-            noBtn.style.top = newY + "px";
+            noBtn.style.position = "fixed";
+            noBtn.style.left = randomX + "px";
+            noBtn.style.top = randomY + "px";
         }
 
         const bubbleImages = [
